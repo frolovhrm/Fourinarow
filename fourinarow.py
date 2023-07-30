@@ -26,7 +26,7 @@ BOFRD_TEMPLATE = """
     |{}{}{}{}{}{}{}|
     |{}{}{}{}{}{}{}|
     +-------+"""
-1
+
 
 def main():
     print(
@@ -50,12 +50,12 @@ def main():
         if isWinner(playerTurn, gameBoard):
             displayBoard(gameBoard)  # В последний раз вывести поле
             print("Player {} has won!".format(playerTurn))
-            sys.exit
+            sys.exit()
 
         elif isFull(gameBoard):
             displayBoard(gameBoard)  # В постедний раз вывести поле
             print("This is a tie!")
-            sys.exit
+            sys.exit()
 
         # Ход передается другому игроку
         if playerTurn == PLAYER_X:
@@ -102,7 +102,7 @@ def getPlayerMove(playerTile, board):
         response = input("> ").upper().strip()
         if response == "QUIT":
             print("Thanks for playing!")
-            sys.exit
+            sys.exit()
 
         if response not in COLUMN_LABELS:
             print(f"Enter a number from 1 or to {BOARD_WIDTH}.")
@@ -162,18 +162,8 @@ def isWinner(playerTile, board):
             # Проверить четверку по диагонали направо вниз:
             tile1 = board[(columnIndex, rowIndex)]
             tile2 = board[(columnIndex + 1, rowIndex + 1)]
-            tile3 = board[(columnIndex + 1, rowIndex + 2)]
-            tile4 = board[(columnIndex + 1, rowIndex + 3)]
-            if tile1 == tile2 == tile3 == tile4 == playerTile:
-                return True
-
-    for columnIndex in range(BOARD_WIDTH - 3):
-        for rowIndex in range(BOARD_HEIGHT - 3):
-            # Проверить четверку по диагонали направо вниз:
-            tile1 = board[(columnIndex, rowIndex)]
-            tile2 = board[(columnIndex + 1, rowIndex + 1)]
-            tile3 = board[(columnIndex + 1, rowIndex + 2)]
-            tile4 = board[(columnIndex + 1, rowIndex + 3)]
+            tile3 = board[(columnIndex + 2, rowIndex + 2)]
+            tile4 = board[(columnIndex + 3, rowIndex + 3)]
             if tile1 == tile2 == tile3 == tile4 == playerTile:
                 return True
 
